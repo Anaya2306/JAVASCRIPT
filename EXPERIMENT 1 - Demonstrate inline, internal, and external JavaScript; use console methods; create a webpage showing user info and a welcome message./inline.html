@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information</title>
+
+    <script>
+        function showDetails() {
+            document.getElementById("message").innerHTML =
+                "Welcome, Anaya! THIS IS EXP1";
+
+            console.log("User details displayed successfully.");
+            console.info("Internal JavaScript executed.");
+        }
+    </script>
+</head>
+
+<body style="background-color: #fce4ec; text-align: center; font-family: Arial;">
+
+    <h1 style="font-size: 100px; color: #8e24aa;">
+        Welcome, Anaya!
+    </h1>
+
+    <h2 style="font-size: 80px; color: #8e24aa;">
+        User Information
+    </h2>
+
+    <p style="font-size: 80px; color: #1565c0;">
+        <b>Name:</b> Anaya Shende
+    </p>
+
+    <p style="font-size: 80px; color: #00897b;">
+        <b>Course:</b> B.Tech Computer Science
+    </p>
+
+    <p style="font-size: 80px; color: #1565c0;">
+        <b>PRN:</b> 24070521213
+    </p>
+
+    <p id="message" style="font-size: 50px; color: #8e24aa;"></p>
+
+    <button
+        style="font-size: 40px; padding: 15px 30px; background-color: #8e24aa; color: white;"
+        onclick="alert('Hello Anaya! Welcome to your profile.')">
+        Say Hello
+    </button>
+
+    <br><br>
+
+    <button
+        style="font-size: 40px; padding: 15px 30px; background-color: #1565c0; color: white;"
+        onclick="showDetails()">
+        Show Welcome Message
+    </button>
+
+    <br><br>
+
+    <button
+        style="font-size: 40px; padding: 15px 30px; background-color: #00897b; color: white;"
+        onclick="displayUserInfo()">
+        View User Details
+    </button>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

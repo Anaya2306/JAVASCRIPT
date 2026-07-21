@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic report</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #ffffff;
+            color: #111111;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.5;
+        }
+        h2 {
+            border-bottom: 1px solid #111111;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #666666;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        input:focus {
+            outline: none;
+            border: 1px solid #111111;
+        }
+        input:not(:placeholder-shown):invalid {
+            border-style: dashed;
+            border-color: #ff0000;
+        }
+        button {
+            width: 100%;
+            background-color: #111111;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            font-family: monospace;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #444444;
+        }
+        .output-box {
+            margin-top: 25px;
+            padding: 15px;
+            border: 1px solid #111111;
+            display: none;
+            white-space: pre-line; /* Preserves layout spaces and line breaks */
+        }
+        .error-message {
+            color: #ff0000;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>24070521213</h1>
+    <h2>Academic Entry Portal</h2>
+    <form id="gradeForm" novalidate>
+        <div class="form-group">
+            <label for="studentName">Student Name</label>
+            <!-- Pattern ensures it contains only letters and spaces, matching real-world names -->
+            <input type="text" id="studentName" placeholder="e.g. Alex Smith" required minlength="2" maxlength="50" pattern="^[a-zA-Z\s]+$">
+            <div class="error-message" id="nameError">Please enter a valid name using only letters (min 2 characters).</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="rollNo">Roll Number</label>
+            <!-- Restricts input to numeric roll numbers only -->
+            <input type="text" id="rollNo" placeholder="e.g. 101" required pattern="^[0-9]+$">
+            <div class="error-message" id="rollError">Please enter a valid numeric roll number.</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="sub1">Subject 1 Marks (0 - 100)</label>
+            <input type="number" id="sub1" placeholder="Score 1" required min="0" max="100" step="0.1">
+            <div class="error-message" id="sub1Error">Marks must be between 0 and 100.</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="sub2">Subject 2 Marks (0 - 100)</label>
+            <input type="number" id="sub2" placeholder="Score 2" required min="0" max="100" step="0.1">
+            <div class="error-message" id="sub2Error">Marks must be between 0 and 100.</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="sub3">Subject 3 Marks (0 - 100)</label>
+            <input type="number" id="sub3" placeholder="Score 3" required min="0" max="100" step="0.1">
+            <div class="error-message" id="sub3Error">Marks must be between 0 and 100.</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="sub4">Subject 4 Marks (0 - 100)</label>
+            <input type="number" id="sub4" placeholder="Score 4" required min="0" max="100" step="0.1">
+            <div class="error-message" id="sub4Error">Marks must be between 0 and 100.</div>
+        </div>
+        
+        <button type="submit">Process Report</button>
+    </form>
+
+    <h2>System Output Receipt</h2>
+    <div id="resultDisplay" class="output-box"></div>
+
+    <script>
+        var reportForm = document.getElementById('gradeForm');
+        var viewOutput = document.getElementById('resultDisplay');
+
+        reportForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            
+            let hasErrors = false;
+            const errorDivs = document.querySelectorAll('.error-message');
+            errorDivs.forEach(div => div.style.display = 'none');
+
+           
+            const nameField = document.getElementById('studentName');
+            const nameValue = nameField.value.trim();
+            const namePattern = /^[a-zA-Z\s]+$/;
+            if (nameValue.length < 2 || nameValue.length > 50 || !namePattern.test(nameValue)) {
+                document.getElementById('nameError').style.display = 'block';
+                hasErrors = true;
+            }
+
+           
+            const rollField = document.getElementById('rollNo');
+            const rollValue = rollField.value.trim();
+            const rollPattern = /^[0-9]+$/;
+            if (rollValue === '' || !rollPattern.test(rollValue)) {
+                document.getElementById('rollError').style.display = 'block';
+                hasErrors = true;
+            }
+
+          
+            const subjects = ['sub1', 'sub2', 'sub3', 'sub4'];
+            const scores = {};
+
+            subjects.forEach(subId => {
+                const inputElement = document.getElementById(subId);
+                const scoreValue = parseFloat(inputElement.value);
+
+                if (isNaN(scoreValue) || scoreValue < 0 || scoreValue > 100) {
+                    document.getElementById(`${subId}Error`).style.display = 'block';
+                    hasErrors = true;
+                } else {
+                    scores[subId] = scoreValue;
+                }
+            });
+
+            
+            if (hasErrors) {
+                viewOutput.style.display = 'none';
+                return;
+            }
+
+            // Calculations
+            const totalMarks = scores.sub1 + scores.sub2 + scores.sub3 + scores.sub4;
+            const percentage = totalMarks / 4;
+
+            let assignedGrade = '';
+            if (percentage >= 90) {
+                assignedGrade = 'A';
+            } else if (percentage >= 80) {
+                assignedGrade = 'B';
+            } else if (percentage >= 70) {
+                assignedGrade = 'C';
+            } else if (percentage >= 60) {
+                assignedGrade = 'D';
+            } else {
+                assignedGrade = 'F';
+            }
+
+            // Generate Output Receipt
+            viewOutput.innerHTML = `
+===================================
+OFFICIAL ACADEMIC REPORT
+===================================
+STUDENT: ${nameValue.toUpperCase()}
+ROLL NO: ${rollValue}
+
+Subject 1: ${scores.sub1.toFixed(1)} / 100
+Subject 2: ${scores.sub2.toFixed(1)} / 100
+Subject 3: ${scores.sub3.toFixed(1)} / 100
+Subject 4: ${scores.sub4.toFixed(1)} / 100
+-----------------------------------
+TOTAL MARKS: ${totalMarks.toFixed(1)} / 400
+PERCENTAGE: ${percentage.toFixed(1)}%
+FINAL GRADE: ${assignedGrade}
+===================================
+            `;
+            viewOutput.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

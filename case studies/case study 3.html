@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scholarship Finder Project</title>
+    <style>
+        /* Basic clean layout without complex CSS frameworks */
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            margin: 50px;
+        }
+
+        .container {
+            background-color: white;
+            border: 1px solid rgba(128, 128, 128, 0.342);
+            width: 400px;
+            padding: 20px;
+            margin: 0 auto; /* Centers the box on the screen */
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 95%;
+            padding: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(218, 71, 169);
+            color: rgb(223, 181, 141);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Error labels hidden by default */
+        .error {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+
+        /* Standard visible result box */
+        #resultBox {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Scholarship Checker</h2>
+        
+        <form id="scholarshipForm">
+            <div class="form-group">
+                <label>Student Name:</label>
+                <input type="text" id="studentName">
+                <div id="nameError" class="error">Name is required!</div>
+            </div>
+
+            <p><b>Enter Subject Marks (0 - 100):</b></p>
+
+            <div class="form-group">
+                <label>Subject 1:</label>
+                <input type="number" id="marks1">
+                <div id="err1" class="error">Must be between 0 and 100</div>
+            </div>
+
+            <div class="form-group">
+                <label>Subject 2:</label>
+                <input type="number" id="marks2">
+                <div id="err2" class="error">Must be between 0 and 100</div>
+            </div>
+
+            <div class="form-group">
+                <label>Subject 3:</label>
+                <input type="number" id="marks3">
+                <div id="err3" class="error">Must be between 0 and 100</div>
+            </div>
+
+            <div class="form-group">
+                <label>Subject 4:</label>
+                <input type="number" id="marks4">
+                <div id="err4" class="error">Must be between 0 and 100</div>
+            </div>
+
+            <button type="button" id="submitBtn">Check Eligibility</button>
+        </form>
+
+        <div id="resultBox"></div>
+    </div>
+
+    <script>
+        // 1. Using 'var' for a simple global click counter
+        var checkCounter = 0;
+
+        // Standard beginner button click assignment
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            
+            // 2. Using 'const' to select all the static elements
+            const nameEl = document.getElementById('studentName');
+            const m1El = document.getElementById('marks1');
+            const m2El = document.getElementById('marks2');
+            const m3El = document.getElementById('marks3');
+            const m4El = document.getElementById('marks4');
+            const outputEl = document.getElementById('resultBox');
+
+            // Reset all errors and hide result box on every new click
+            document.getElementById('nameError').style.display = "none";
+            document.getElementById('err1').style.display = "none";
+            document.getElementById('err2').style.display = "none";
+            document.getElementById('err3').style.display = "none";
+            document.getElementById('err4').style.display = "none";
+            outputEl.style.display = "none";
+
+            // 3. Using 'let' for form validation state tracking
+            let isValid = true;
+
+            // Form validation block
+            if (nameEl.value.trim() === "") {
+                document.getElementById('nameError').style.display = "block";
+                isValid = false;
+            }
+
+            // Parse inputs into actual numbers
+            let num1 = Number(m1El.value);
+            let num2 = Number(m2El.value);
+            let num3 = Number(m3El.value);
+            let num4 = Number(m4El.value);
+
+            if (m1El.value === "" || num1 < 0 || num1 > 100) {
+                document.getElementById('err1').style.display = "block";
+                isValid = false;
+            }
+            if (m2El.value === "" || num2 < 0 || num2 > 100) {
+                document.getElementById('err2').style.display = "block";
+                isValid = false;
+            }
+            if (m3El.value === "" || num3 < 0 || num3 > 100) {
+                document.getElementById('err3').style.display = "block";
+                isValid = false;
+            }
+            if (m4El.value === "" || num4 < 0 || num4 > 100) {
+                document.getElementById('err4').style.display = "block";
+                isValid = false;
+            }
+
+            // Control structure: Stop script execution if form validation fails
+            if (isValid === false) {
+                return;
+            }
+
+            // Save form values inside a single plain JavaScript object
+            const dataContainer = {
+                name: nameEl.value,
+                s1: num1,
+                s2: num2,
+                s3: num3,
+                s4: num4
+            };
+
+            // 4. Using Object Destructuring to extract the scores cleanly
+            const { name, s1, s2, s3, s4 } = dataContainer;
+
+            // Compute standard average score math 
+            let average = (s1 + s2 + s3 + s4) / 4;
+
+            // 5. Control structures for evaluating scholarship eligibility brackets
+            let scholarshipType = "";
+            let backgroundColor = "";
+
+            if (average < 50) {
+                scholarshipType = "Not Eligible";
+                backgroundColor = "#ffcccc"; // Light red
+            } else if (average < 65) {
+                scholarshipType = "Bronze Scholarship";
+                backgroundColor = "#ffe0b3"; // Light orange
+            } else if (average < 75) {
+                scholarshipType = "Silver Scholarship";
+                backgroundColor = "#e6e6e6"; // Light gray
+            } else if (average < 85) {
+                scholarshipType = "Gold Scholarship";   // Filled the 75-85 gap naturally
+                backgroundColor = "#ffffcc"; // Light yellow
+            } else {
+                scholarshipType = "Platinum Scholarship";
+                backgroundColor = "#ccf2ff"; // Light blue
+            }
+
+            // Increment our global var counter
+            checkCounter++;
+
+            // 6. Using Template Literals to create dynamic HTML text strings
+            outputEl.innerHTML = `
+                <h4>Result for ${name}</h4>
+                <p>Average Score: <b>${average}</b></p>
+                <p>Eligibility Status: <b>${scholarshipType}</b></p>
+                <small style="color: gray;">Form submissions evaluated: ${checkCounter}</small>
+            `;
+
+            // Display results using native style modifications
+            outputEl.style.backgroundColor = backgroundColor;
+            outputEl.style.display = "block";
+        });
+    </script>
+</body>
+</html>

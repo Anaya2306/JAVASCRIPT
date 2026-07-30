@@ -1,0 +1,97 @@
+
+body {
+    background-color: #e4dddd; 
+    color: #ffffff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.atm-container {
+    background-color: #1e1e1e; 
+    border: 2px solid #ffb6c1; 
+    border-radius: 15px;
+    width: 300px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); 
+}
+
+h1 {
+    color: #ffc0cb; 
+    font-size: 22px;
+    margin-top: 0;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.display-screen {
+    background-color: #121212; 
+    border: 1px solid #ffb6c1;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+#pinInput {
+    background: transparent;
+    border: none;
+    color: #ffb6c1; 
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    outline: none;
+    letter-spacing: 4px;
+}
+
+#statusText {
+    color: #aaaaaa; 
+    font-size: 13px;
+    margin: 10px 0 0 0;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+button {
+    background-color: #252525; 
+    border: 1px solid #333333;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.2s; 
+}
+
+
+button:hover {
+    background-color: #2d2d2d;
+    border-color: #ffb6c1;
+}
+
+button:active {
+    background-color: #ffb6c1;
+    color: #121212;
+}
+
+.clear-btn {
+    color: #ff8093; 
+}
+
+.enter-btn {
+    background-color: #ffb6c1; 
+    color: #f3f0f0;
+    font-weight: bold;
+}
+
+.enter-btn:hover {
+    background-color: #ffc0cb;
+}

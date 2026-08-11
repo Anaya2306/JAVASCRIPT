@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Analyzer Studio</title>
+    
+    <link rel="stylesheet" href="cs5.css">
+</head>
+<body>
+
+    <div class="glass-container">
+        <h2>Array Min/Max </h2>
+        
+        <div class="form-group">
+            <label for="numberStream">Enter Numbers :</label>
+            <input type="text" id="numberStream" >
+            <p id="errorAlert" class="hidden-alert">Please enter numeric values.</p>
+        </div>
+        
+        <button id="calcBtn">Scan Array </button>
+
+        <div class="dashboard-grid">
+            <div class="metric-box">
+                <span class="label">Minimum</span>
+                <span id="minValueDisplay" class="value-text">-</span>
+            </div>
+            <div class="metric-box">
+                <span class="label">Maximum</span>
+                <span id="maxValueDisplay" class="value-text">-</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="cs5.js"></script>
+</body>
+</html>

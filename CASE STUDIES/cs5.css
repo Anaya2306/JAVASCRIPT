@@ -1,0 +1,121 @@
+/* Sharp Minimalism Styling (No shadows, no rounded corners) */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #111111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.glass-container {
+    background-color: #ffffff;
+    border: 2px solid #111111;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: none; 
+    border-radius: 0; 
+}
+
+h2 {
+    margin: 0 0 1.0rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #111111;
+    padding-bottom: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    color: #555555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #ffffff;
+    border: 1px solid #111111;
+    color: #111111;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 0; /* Flat input edges */
+}
+
+input:focus {
+    border: 2px solid #111111;
+    padding: 0.6875rem; 
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #111111;
+    border: 1px solid #111111;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 0; 
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #111111;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px; 
+    background-color: #111111; 
+    margin-top: 1.5rem;
+    border: 1px solid #111111;
+}
+
+.metric-box {
+    background-color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0; 
+}
+
+.metric-box .label {
+    display: block;
+    font-size: 0.7rem;
+    color: #555555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.metric-box .value-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111111;
+}
+
+.hidden-alert {
+    color: #ff0000;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    display: none;
+}

@@ -1,0 +1,152 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPPING CART</title>
+    <link rel="stylesheet" href="exp5.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>SHOPPING CART</h1>
+        <h2>24070521213</h2>
+        <!-- Customer Details -->
+        <div class="section">
+            <h3>Customer Details</h3>
+
+            <label>Customer Name:</label>
+            <input type="text" id="customerName" placeholder="Enter customer name">
+        </div>
+
+
+        <!-- Product Details -->
+        <div class="section">
+
+            <h3>Product Details</h3>
+
+            <div id="productInputs">
+
+                <div class="product-row">
+
+                    <span class="item-number">Item 1</span>
+
+                    <input type="text"
+                           class="product-name"
+                           placeholder="Product name">
+
+                    <input type="number"
+                           class="product-price"
+                           placeholder="Price">
+
+                    <input type="number"
+                           class="product-quantity"
+                           placeholder="Quantity"
+                           min="1">
+
+                </div>
+
+            </div>
+
+            <button onclick="addProduct()">+ Add Another Product</button>
+
+        </div>
+
+
+        <!-- Discount -->
+        <div class="section">
+
+            <h3>Discount</h3>
+
+            <input type="number"
+                   id="discount"
+                   placeholder="Discount %"
+                   min="0"
+                   max="100">
+
+            <button onclick="generateReceipt()">
+                Generate Receipt
+            </button>
+
+        </div>
+
+
+        <!-- Message -->
+        <p id="message"></p>
+
+
+        <!-- Receipt -->
+        <div id="receipt">
+
+            <h2>SHOPPING RECEIPT</h2>
+
+            <p>
+                <strong>Customer:</strong>
+                <span id="receiptCustomer"></span>
+            </p>
+
+            <p>
+                <strong>Date:</strong>
+                <span id="receiptDate"></span>
+            </p>
+
+            <hr>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody id="receiptItems"></tbody>
+
+            </table>
+
+            <hr>
+
+            <div class="receipt-total">
+
+                <p>
+                    Subtotal:
+                    ₹<span id="receiptSubtotal">0.00</span>
+                </p>
+
+                <p>
+                    Discount:
+                    ₹<span id="receiptDiscount">0.00</span>
+                </p>
+
+                <h3>
+                    Final Total:
+                    ₹<span id="receiptTotal">0.00</span>
+                </h3>
+
+            </div>
+
+            <p class="thank-you">
+                Thank you for shopping!
+            </p>
+
+        </div>
+
+
+        <button class="print-button" onclick="printReceipt()">
+            Print Receipt
+        </button>
+
+    </div>
+
+    <script src="exp5.js"></script>
+
+</body>
+</html>
+```

@@ -1,0 +1,135 @@
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 30px;
+}
+
+.container {
+    width: 700px;
+    margin: auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.section {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+input {
+    padding: 8px;
+    margin: 5px;
+}
+
+.product-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.item-number {
+    width: 55px;
+    font-weight: bold;
+}
+
+.product-name {
+    width: 150px;
+}
+
+.product-price {
+    width: 100px;
+}
+
+.product-quantity {
+    width: 90px;
+}
+
+button {
+    padding: 8px 12px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+#message {
+    color: green;
+    font-weight: bold;
+}
+
+
+/* Receipt */
+
+#receipt {
+    margin-top: 30px;
+    padding: 25px;
+    border: 1px solid #333;
+    background-color: white;
+}
+
+#receipt h2 {
+    text-align: center;
+}
+
+#receipt table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#receipt th,
+#receipt td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: center;
+}
+
+.receipt-total {
+    text-align: right;
+}
+
+.thank-you {
+    text-align: center;
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+.print-button {
+    display: block;
+    margin: 20px auto;
+}
+
+
+/* Printing */
+
+@media print {
+
+    body {
+        background-color: white;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+
+    .section,
+    .print-button,
+    #message,
+    h1 {
+        display: none;
+    }
+
+    #receipt {
+        border: none;
+        margin: 0;
+    }
+}
+```

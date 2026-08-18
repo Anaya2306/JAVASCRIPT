@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript String Operations</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --text-muted: #666666;
+            --border-color: #dddddd;
+            --accent-color: #000000;
+            --accent-hover: #555555;
+            --output-bg: #f9f9f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 3rem 2rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .workspace {
+            max-width: 600px;
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .control-group {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            background-color: transparent;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+            margin-bottom: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .param-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .param-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 0.4rem 0.6rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-color);
+            background-color: transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .output-box {
+            background-color: var(--output-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            min-height: 60px;
+            color: var(--text-color);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="workspace">
+    <header>
+        <h1>String Operations</h1>
+        <p class="subtitle">A stripped-back panel for immediate text modifications.</p>
+    </header>
+
+    <main>
+        <!-- Input Field Container -->
+        <div class="control-group">
+            <label for="textInput">Source Text</label>
+            <textarea id="textInput"></textarea>
+            
+            <!-- Standard Utilities -->
+            <div class="actions">
+                <button onclick="checkLength()">Length</button>
+                <button onclick="toUppercase()">Uppercase</button>
+                <button onclick="toLowercase()">Lowercase</button>
+                <button onclick="reverseText()">Reverse</button>
+            </div>
+
+            <!-- Parameterized String Methods -->
+            <label>Advanced Operations</label>
+            <div class="param-section">
+                <!-- substring() -->
+                <div class="param-row">
+                    <input type="number" id="subStart" placeholder="Start" style="width: 70px;">
+                    <input type="number" id="subEnd" placeholder="End"  style="width: 70px;">
+                    <button onclick="runSubstring()">substring()</button>
+                </div>
+
+                <!-- indexOf() -->
+                <div class="param-row">
+                    <input type="text" id="indexOfSearch" placeholder="Search query..."  style="width: 150px;">
+                    <button onclick="runIndexOf()">indexOf()</button>
+                </div>
+
+                <!-- split() -->
+                <div class="param-row">
+                    <input type="text" id="splitDelim" placeholder="Delimiter" style="width: 150px;">
+                    <button onclick="runSplit()">split()</button>
+                </div>
+
+                <!-- replace() -->
+                <div class="param-row">
+                    <input type="text" id="replaceFind" placeholder="Find..."  style="width: 100px;">
+                    <input type="text" id="replaceWith" placeholder="Replace..." style="width: 100px;">
+                    <button onclick="runReplace()">replace()</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Output Metric Container -->
+        <div class="control-group">
+            <label>Console Output</label>
+            <div id="outputBox" class="output-box"></div>
+        </div>
+    </main>
+</div>
+
+<script>
+    // Elements fetching helper functions
+    const getRawText = () => document.getElementById('textInput').value;
+    const updateConsole = (content) => document.getElementById('outputBox').textContent = content;
+
+    function checkLength() {
+        updateConsole(`Character count: ${getRawText().length}`);
+    }
+
+    function toUppercase() {
+        updateConsole(getRawText().toUpperCase());
+    }
+
+    function toLowercase() {
+        updateConsole(getRawText().toLowerCase());
+    }
+
+    function reverseText() {
+        const reversed = [...getRawText()].reverse().join('');
+        updateConsole(reversed);
+    }
+
+    function runSubstring() {
+        const start = parseInt(document.getElementById('subStart').value, 10) || 0;
+        const endValue = document.getElementById('subEnd').value;
+        const end = endValue !== '' ? parseInt(endValue, 10) : undefined;
+        updateConsole(getRawText().substring(start, end));
+    }
+
+    function runIndexOf() {
+        const query = document.getElementById('indexOfSearch').value;
+        const index = getRawText().indexOf(query);
+        updateConsole(`Match found at index position: ${index}`);
+    }
+
+    function runSplit() {
+        const delimiter = document.getElementById('splitDelim').value;
+        const structuralTokens = getRawText().split(delimiter);
+        updateConsole(JSON.stringify(structuralTokens, null, 2));
+    }
+
+    function runReplace() {
+        const target = document.getElementById('replaceFind').value;
+        const textReplacement = document.getElementById('replaceWith').value;
+        updateConsole(getRawText().replace(target, textReplacement));
+    }
+</script>
+
+</body>
+</html>
+
+

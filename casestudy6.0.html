@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowel Counter</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --text-muted: #666666;
+            --border-color: #dddddd;
+            --accent-color: #000000;
+            --accent-hover: #555555;
+            --output-bg: #f9f9f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 3rem 2rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .workspace {
+            max-width: 600px;
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .control-group {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            background-color: transparent;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+            margin-bottom: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .output-box {
+            background-color: var(--output-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            min-height: 60px;
+            color: var(--text-color);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="workspace">
+    <header>
+        <h1>Vowel Counter</h1>
+        <p class="subtitle">Analyze text to count the occurrences of vowels.</p>
+    </header>
+
+    <main>
+        <!-- Paragraph Input Field -->
+        <div class="control-group">
+            <label for="textInput">Paragraph</label>
+            <textarea id="textInput" ></textarea>
+            
+            <button onclick="countVowels()">Count Vowels</button>
+        </div>
+
+        <!-- Metric Output Container -->
+        <div class="control-group">
+            <label>Console Output</label>
+            <div id="outputBox" class="output-box"></div>
+        </div>
+    </main>
+</div>
+
+<script>
+    function countVowels() {
+        const text = document.getElementById('textInput').value;
+        
+        // Find matching characters safely matching case variants
+        const matches = text.match(/[aeiou]/gi);
+        const count = matches ? matches.length : 0;
+        
+        document.getElementById('outputBox').textContent = `Total vowels found: ${count}`;
+    }
+</script>
+
+</body>
+</html>

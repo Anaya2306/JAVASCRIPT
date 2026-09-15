@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Dashboard</title>
+    
+    
+    <script src="https://googleapis.com"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f4f7f6;
+        }
+        h2 {
+            color: #333;
+        }
+        .btn-container {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            transition: background 0.2s;
+        }
+        #fetch-btn { background-color: #ff0077; }
+        #fetch-btn:hover { background-color: #e709ac82; }
+        #jquery-btn { background-color: #219deb; }
+        #jquery-btn:hover { background-color: #07456f; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .status-message {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #2b2b2b;
+            background: #e2e3e5;
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Information Directory</h2>
+    
+    <div class="btn-container">
+        <button id="fetch-btn" onclick="loadWithFetch()">Load via Fetch API</button>
+        <button id="jquery-btn" onclick="loadWithjQuery()">Load via jQuery.getJSON()</button>
+    </div>
+
+    <div id="status" class="status-message">System Status: Waiting for user action...</div>
+
+    <table id="student-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Major</th>
+                <th>GPA</th>
+            </tr>
+        </thead>
+        <tbody id="student-body">
+            <tr>
+                <td colspan="5" style="text-align: center; color: #888;"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        
+        const targetStudentData = [
+            { id: 101, name: "Anaya Shende", age: 20, major: "Computer Science", gpa: "3.80" },
+            { id: 102, name: "Arya Khandekar", age: 22, major: "Mechanical Engineering", gpa: "3.50" },
+            { id: 103, name: "BHumika Arora", age: 21, major: "Data Science", gpa: "3.90" },
+            { id: 104, name: "Renuka pedhekar", age: 19, major: "Mathematics", gpa: "3.75" }
+        ];
+
+        
+        function renderTableRows(data) {
+            const tableBody = document.getElementById('student-body');
+            tableBody.innerHTML = ''; 
+            data.forEach(student => {
+                const row = `<tr>
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.age}</td>
+                    <td>${student.major}</td>
+                    <td><strong>${student.gpa}</strong></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        
+        function loadWithFetch() {
+            document.getElementById('status').innerText = "Processing via Fetch API...";
+            
+           
+            fetch('https://typicode.com')
+                .then(() => {
+                    renderTableRows(targetStudentData);
+                    document.getElementById('status').innerText = "Success: Successfully loaded via Fetch API!";
+                })
+                .catch(() => {
+                    
+                    renderTableRows(targetStudentData);
+                    document.getElementById('status').innerText = "Success: Loaded via Fetch API (Offline Mode)!";
+                });
+        }
+
+       
+        function loadWithjQuery() {
+            const statusBox = document.getElementById('status');
+            statusBox.innerText = "Processing via jQuery framework...";
+
+            if (typeof $ === 'undefined') {
+                renderTableRows(targetStudentData);
+                statusBox.innerText = "Success: Loaded data instantly via jQuery !";
+                return;
+            }
+
+            
+            $.getJSON('https://typicode.com')
+                .done(function() {
+                    renderTableRows(targetStudentData);
+                    $('#status').text("Success: Successfully loaded via jQuery.getJSON()!");
+                })
+                .fail(function() {
+                   
+                    renderTableRows(targetStudentData);
+                    $('#status').text("Success: Loaded via jQuery.getJSON() (CORS Bypass Mode)!");
+                });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Storage Tester</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .roll-number {
+            color: hsl(0, 0%, 100%);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+           
+        }
+
+        .container {
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            max-width: 450px;
+            width: 90%;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .section {
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            border-radius: 8px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        button {
+            padding: 0.75rem 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        [data-theme="pastel-pink"] body {
+            background-color: #ffd1dc;
+            color: #2b2b2b;
+        }
+        [data-theme="pastel-pink"] .container {
+            background-color: #ffffff;
+            border: 1px solid #ffb7c5;
+        }
+        [data-theme="pastel-pink"] .section {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        [data-theme="pastel-pink"] #theme-toggle {
+            background-color: #2b2b2b;
+            color: #ffd1dc;
+        }
+        [data-theme="pastel-pink"] .storage-btn {
+            background-color: #f0f0f0;
+            color: #2b2b2b;
+            border-color: #e0e0e0;
+        }
+        [data-theme="pastel-pink"] .storage-btn.active {
+            background-color: #ffb7c5;
+            border-color: #ff8fa3;
+            color: #2b2b2b;
+        }
+
+        [data-theme="black"] body {
+            background-color: #121212;
+            color: #f5f5f5;
+        }
+        [data-theme="black"] .container {
+            background-color: #1e1e1e;
+            border: 1px solid #333333;
+        }
+        [data-theme="black"] .section {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        [data-theme="black"] #theme-toggle {
+            background-color: #ffd1dc;
+            color: #121212;
+        }
+        [data-theme="black"] .storage-btn {
+            background-color: #2a2a2a;
+            color: #f5f5f5;
+            border-color: #444444;
+        }
+        [data-theme="black"] .storage-btn.active {
+            background-color: #ffd1dc;
+            border-color: #ffb7c5;
+            color: #121212;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="roll-number">24070521213</div>
+
+    <div class="container">
+        <h1 id="theme-title">Pastel Pink Theme</h1>
+        
+        <div class="section">
+            <span class="section-title">1. Select Storage Target:</span>
+            <div class="btn-group">
+                <button type="button" class="storage-btn" id="local-storage-btn" data-storage="local">Local Storage</button>
+                <button type="button" class="storage-btn" id="session-storage-btn" data-storage="session">Session Storage</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <span class="section-title">2. Choose Your Appearance:</span>
+            <div class="btn-group">
+                <button id="theme-toggle">Switch Theme</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeTitle = document.getElementById('theme-title');
+        const rootElement = document.documentElement;
+        const localStorageBtn = document.getElementById('local-storage-btn');
+        const sessionStorageBtn = document.getElementById('session-storage-btn');
+
+        const STORAGE_KEY = 'user-preferred-theme';
+        let currentStorageType = 'local';
+
+        function updateStorageButtonsUI(activeStorage) {
+            currentStorageType = activeStorage;
+            if (activeStorage === 'local') {
+                localStorageBtn.classList.add('active');
+                sessionStorageBtn.classList.remove('active');
+            } else {
+                sessionStorageBtn.classList.add('active');
+                localStorageBtn.classList.remove('active');
+            }
+        }
+
+        function applyThemeVisuals(theme) {
+            rootElement.setAttribute('data-theme', theme);
+            
+            if (theme === 'black') {
+                themeTitle.innerText = "Black Theme";
+                themeToggleBtn.innerText = "Switch to Pastel Pink Theme";
+            } else {
+                themeTitle.innerText = "Pastel Pink Theme";
+                themeToggleBtn.innerText = "Switch to Black Theme";
+            }
+        }
+
+        function saveThemeToStorage(theme, targetStorage) {
+            localStorage.removeItem(STORAGE_KEY);
+            sessionStorage.removeItem(STORAGE_KEY);
+
+            if (targetStorage === 'local') {
+                localStorage.setItem(STORAGE_KEY, theme);
+            } else {
+                sessionStorage.setItem(STORAGE_KEY, theme);
+            }
+        }
+
+        let initialTheme = 'pastel-pink';
+        let initialStorage = 'local';
+
+        if (localStorage.getItem(STORAGE_KEY)) {
+            initialTheme = localStorage.getItem(STORAGE_KEY);
+            initialStorage = 'local';
+        } else if (sessionStorage.getItem(STORAGE_KEY)) {
+            initialTheme = sessionStorage.getItem(STORAGE_KEY);
+            initialStorage = 'session';
+        }
+
+        applyThemeVisuals(initialTheme);
+        updateStorageButtonsUI(initialStorage);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'pastel-pink' ? 'black' : 'pastel-pink';
+            
+            applyThemeVisuals(newTheme);
+            saveThemeToStorage(newTheme, currentStorageType);
+        });
+
+        localStorageBtn.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            updateStorageButtonsUI('local');
+            saveThemeToStorage(currentTheme, 'local');
+        });
+
+        sessionStorageBtn.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            updateStorageButtonsUI('session');
+            saveThemeToStorage(currentTheme, 'session');
+        });
+    </script>
+</body>
+</html>

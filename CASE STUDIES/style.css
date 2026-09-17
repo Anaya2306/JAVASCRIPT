@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f2f4f7;
+    padding: 30px;
+    color: #222;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.12);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #243b55;
+}
+
+.button-section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #2563eb;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+#jqueryButton {
+    background-color: #059669;
+}
+
+#jqueryButton:hover {
+    background-color: #047857;
+}
+
+.filter-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#searchBox,
+#statusFilter {
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+#searchBox {
+    flex: 1;
+}
+
+#statusFilter {
+    width: 220px;
+    background-color: white;
+}
+
+#message {
+    text-align: center;
+    font-size: 16px;
+    margin: 15px 0;
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #243b55;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tr:hover {
+    background-color: #e0f2fe;
+}
+
+.status-registered {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #ca8a04;
+    font-weight: bold;
+}
+
+.status-cancelled {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .button-section,
+    .filter-section {
+        flex-direction: column;
+    }
+
+    #statusFilter {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}

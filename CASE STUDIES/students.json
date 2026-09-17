@@ -1,0 +1,58 @@
+[
+  {
+    "studentName": "Anaya Shende",
+    "prn": "24070521213",
+    "department": "Computer Engineering",
+    "year": "Second Year",
+    "eventName": "Hackoweek",
+    "registrationStatus": "Registered"
+  },
+  {
+    "studentName": "Renuka pedhekar",
+    "prn": "24070521259",
+    "department": "Information Technology",
+    "year": "Third Year",
+    "eventName": "Web Development Workshop",
+    "registrationStatus": "Pending"
+  },
+  {
+    "studentName": "Sharayu kathalkar",
+    "prn": "25070721154",
+    "department": "Mechanical Engineering",
+    "year": "First Year",
+    "eventName": "Robotics Exhibition",
+    "registrationStatus": "Cancelled"
+  },
+  {
+    "studentName": "Vitika saoji",
+    "prn": "240705212156",
+    "department": "Electronics Engineering",
+    "year": "Final Year",
+    "eventName": "Project Presentation",
+    "registrationStatus": "Registered"
+  },
+  {
+    "studentName": "Vikram Joshi",
+    "prn": "PRN1005",
+    "department": "Civil Engineering",
+    "year": "Third Year",
+    "eventName": "Smart City Seminar",
+    "registrationStatus": "Pending"
+  },
+  {
+    "studentName": "Neha More",
+    "prn": "PRN1006",
+    "department": "Computer Engineering",
+    "year": "Final Year",
+    "eventName": "Hackathon",
+    "registrationStatus": "Registered"
+  },
+  {
+    "studentName": "Aditya Pawar",
+    "prn": "PRN1007",
+    "department": "Information Technology",
+    "year": "Second Year",
+    "eventName": "Cyber Security Workshop",
+    "registrationStatus": "Cancelled"
+  }
+]

@@ -1,0 +1,182 @@
+/* Color Palette: Cream Background, Soft Pearl Paper, Pastel Pink Accents */
+body {
+    background-color: #f7f4ed;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+    margin: 0;
+}
+
+.todo-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 550px;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(180, 160, 150, 0.15);
+    border: 1px solid #ebdcd5;
+}
+
+h1 {
+    color: #4a423e;
+    font-size: 2.2rem;
+    margin: 0 0 25px 0;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Up Next Dynamic Dashboard Panel */
+.up-next-card {
+    background-color: #fae3e3; /* Muted Pastel Pink */
+    border: 1px solid #f2cfcf;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 30px;
+}
+
+.up-next-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #b06b6b;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+#up-next-text {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #594949;
+    font-weight: 500;
+}
+
+/* Input Area Configurations */
+.input-section {
+    background-color: #faf8f5;
+    border: 1px solid #ebdcd5;
+    border-radius: 14px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+#task-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 1.05rem;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: #4a423e;
+    margin-bottom: 12px;
+}
+
+.control-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.control-row select, .control-row button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    border: 1px solid #e0d5cd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #615652;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+#star-toggle-btn[data-starred="true"] {
+    background-color: #fff0d4;
+    border-color: #f0cb84;
+    color: #b0811e;
+}
+
+#add-btn {
+    background-color: #f7d6d6; /* Accent Pastel Pink */
+    border-color: #e8bebe;
+    color: #7d4848;
+    margin-left: auto;
+    font-weight: 600;
+}
+
+#add-btn:hover {
+    background-color: #c5066f;
+}
+
+/* Task Item Components */
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: #d00884;
+    border: 1px solid #ede7e2;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Visually elevate starred items */
+.task-item.starred-item {
+    border-left: 5px solid #f7cda6;
+    background-color: #fffdfa;
+}
+
+.task-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.task-title {
+    font-size: 1.05rem;
+    color: #4a423e;
+    font-weight: 500;
+}
+
+.meta-badges {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.badge.low { background-color: #f0ece1; color: #736d5c; }
+.badge.medium { background-color: #faebd7; color: #8a683a; }
+.badge.high { background-color: #ffd6d6; color: #9c4747; }
+.badge.star { background-color: #fff2cc; color: #b58900; }
+
+.action-cluster {
+    display: flex;
+    gap: 8px;
+}
+
+.action-cluster button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.edit-action { background-color: #eef1f0; color: #4e5c58; }
+.delete-action { background-color: #faeded; color: #945252; }

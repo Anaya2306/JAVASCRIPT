@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beige & Pastel Pink Priority Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="todo-container">
+        <h1>Task Planner</h1>
+        <h2>24070521213</h2>
+        <!-- Up Next Dashboard Card -->
+        <div class="up-next-card" id="up-next-display">
+            <span class="up-next-label">⚡ UP NEXT</span>
+            <p id="up-next-text">No pending tasks! Add one below.</p>
+        </div>
+
+        <!-- Input Section with Controls -->
+        <div class="input-section">
+            <input type="text" id="task-input" placeholder="What needs to be done?">
+            <div class="control-row">
+                <select id="priority-select">
+                    <option value="Low">Standard Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="High">High Priority</option>
+                </select>
+                <button id="star-toggle-btn" data-starred="false">☆ Star Task</button>
+                <button id="add-btn">Add Task</button>
+            </div>
+        </div>
+
+        <!-- Task List Area -->
+        <ul id="task-list">
+            <!-- Dynamic tasks inject here -->
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
